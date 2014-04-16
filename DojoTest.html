@@ -1,0 +1,60 @@
+<!--> 
+	dojo_path 在本系列文章中有两个不同的代表意义:
+ 		第一表示 Dojo 包在系统中所处的绝对位置。例如如果 Dojo 包中 dojo.js 文件在系统中的位置为 D:\test\dojo\dojo\dojo.js，则此时 dojo_path 所代表的为 D:\test\dojo。
+      	第二表示页面与 Dojo 包的相对位置。例如如果页面的位置为 D:\, 而 Dojo 包的位置为 D:\test\ 。要在页面中使用 Dojo，首先需要引入 Dojo，其实际引入的语句为 <script type="text/javascript" src="dojo_path/dojo/dojo.js" djConfig="parseOnLoad:true" ></script> 。这里的 dojo_path 表示的是页面与 Doj 包的相对位置，因此其所代表的为 ./test/ 。对于本系列后面章节的实例，将会出现很多使用 dojo_path 的情况，如果要运行这些实例，请将其中的 dojo_path 替换为真实情况的值。
+      	如果不希望下载 Dojo 包而尝试对 Dojo 的使用，可以直接通过引入美国一个在线服务器主机上的 Dojo 来实现。与下载 Dojo 使用的不同点只是 dojo_path 应替换为“http://o.aolcdn.com/dojo/1.0.0”。例如要引入 dojo.js 文件，则其实际引入语句为：
+			<script 
+    			type="text/javascript" 
+    			src="http://o.aolcdn.com/dojo/1.0.0/dojo/dojo.js" 
+    			djConfig="parseOnLoad: true">
+			</script>
+	dojo_path 根据自己的实际情况进行修改:
+                             在输入框中分别输入“ goodguy ”和“ goodgoodstudy ”，
+                             点击 Submit 按钮则会得到一个“ Dojo World Welcome you ！”的一个弹出窗口。
+                             如果在两个输入框中输入的是其它内容，则点击 Submit 按钮就会得到“ Dojo does not like you! ”的一个弹出窗口。
+<-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+  	<title>test</title> 
+  	<script type="text/javascript" 
+    	src="dojo_path/dojo/dojo.js"
+    	djConfig="parseOnLoad: true">
+  	</script> 
+  	<style type="text/css"> 
+    	@import "dojo_path/dijit/themes/tundra/tundra.css"; 
+  	</style> 
+  	<script type="text/javascript"> 
+    	dojo.require("dojo.parser"); 
+    	dojo.require("dijit.form.TextBox"); 
+    	dojo.require("dijit.form.Button"); 
+    	function init() 
+    	{ 
+      		dojo.connect(dijit.byId("mybutton").domNode,"onclick","login"); 
+    	} 
+    	function login() 
+    	{ 
+      		if( dijit.byId("myname").value=="goodguy" && 
+	    		dijit.byId("mypassword").value=="goodgoodstudy")
+        		alert("Dojo World welcome you!"); 
+      		else 
+      		{ 
+        		dijit.byId("myname").setValue(""); 
+        		dijit.byId("mypassword").setValue(""); 
+        		alert("Dojo does not like you!"); 
+      		} 
+    	} 
+    	dojo.addOnLoad(init); 
+  	</script> 
+</head>
+<body class="tundra"> 
+	UserName: 
+	<input type="text" length="20" id="myname"  dojoType="dijit.form.TextBox">
+	<br> 
+	PassWord: 
+  	<input type="password" length="20" id="mypassword"  dojoType="dijit.form.TextBox">
+  	<br> 
+  	<div id="mybutton" dojotype="dijit.form.Button">Submit</div> 
+</body>
+</html>
