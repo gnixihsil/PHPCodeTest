@@ -1,8 +1,21 @@
 <?php
+
+/*
+ *  __DIR__ :
+ *  
+ */
+echo __DIR__."</br>";
+
+/*
+ *  __FILE__ : 
+ */
+echo __FILE__."</br>";
+
 /*
  * chdir() - 实时该变当前工作目录
  */
 //chdir(dirname (__FILE__));
+
 /*
  * getcwd() - 获取当前工作目录的绝对路径
  */
